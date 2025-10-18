@@ -8,7 +8,6 @@ This repository contains the Unity project and supporting materials for the acce
 
 > Accepted paper (PDF): B065_Mixed Reality LEGO vs. Physical LEGO Cognitive, Emotional, and Motor Advantages.pdf
 
-
 ## Snap prediction algorithm
 
 This project uses a simple, robust snap prediction algorithm for snap-interactors (e.g., virtual LEGO studs/holes). The approach evaluates a 2x2 grid of candidate snap blocks around the collision/vicinity area and picks the snap point closest to the held/interactable block's current location, subject to availability.
