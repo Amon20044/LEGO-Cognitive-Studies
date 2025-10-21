@@ -1,12 +1,30 @@
-# LEGO-Cognitive-Studies
+# LEGO Cognitive Studies
 
-This repository contains the Unity project and supporting materials for the accepted research paper "Mixed Reality LEGO vs. Physical LEGO: Cognitive, Emotional, and Motor Advantages" (PDF attached separately). The project demonstrates experimental scenes and assets used in our cognitive, emotional, and motor assessment comparing mixed-reality LEGO interactions with physical LEGO.
+This repository contains the Unity project and supporting materials for the accepted research paper **"Mixed Reality LEGO vs. Physical LEGO: Cognitive, Emotional, and Motor Advantages"**. The project demonstrates experimental scenes and assets used in our cognitive, emotional, and motor assessment comparing mixed-reality LEGO interactions with physical LEGO.
 
 ## Snapshot
 
 ![Research snapshot](Research.png)
 
-> Accepted paper (PDF): B065_Mixed Reality LEGO vs. Physical LEGO Cognitive, Emotional, and Motor Advantages.pdf
+> Accepted paper (PDF): **B065_Mixed Reality LEGO vs. Physical LEGO Cognitive, Emotional, and Motor Advantages.pdf**
+
+PDF location (local, not checked into Git for size):
+
+```plaintext
+C:\Users\amonk\Music\B065_Mixed Reality LEGO vs. Physical LEGO Cognitive, Emotional, and Motor Advantages.pdf
+```
+
+## Unity project
+
+- **Unity Editor version**: 2023.1.2f1 (from `ProjectSettings/ProjectVersion.txt`: `m_EditorVersion: 6000.1.2f1`)
+- Open the project using Unity Hub and select the above Editor version. If you don't have that exact version, Unity will usually offer to upgrade; prefer using the recorded version for exact compatibility.
+
+**Project folders of interest:**
+
+- `Assets/` — All game assets, scenes, textures, prefabs and scripts.
+- `Packages/` — Manifest listing packages used by the project.
+- `ProjectSettings/` — Project-level configuration (includes `ProjectVersion.txt`).
+
 
 ## Snap prediction algorithm
 
@@ -23,28 +41,28 @@ Pseudocode (conceptual):
 
 ```pseudo
 function predictSnapPoint(heldBlockRef, snapInteractor, searchRadius = small):
-	// 1. determine vicinity center from collision or snapInteractor position
-	center = snapInteractor.collisionCenter or snapInteractor.position
+    // 1. determine vicinity center from collision or snapInteractor position
+    center = snapInteractor.collisionCenter or snapInteractor.position
 
-	// 2. build 2x2 grid anchored around center (this depends on your grid/orientation)
-	candidates = build2x2Grid(center, cellSize = snapInteractor.gridUnit)
+    // 2. build 2x2 grid anchored around center (this depends on your grid/orientation)
+    candidates = build2x2Grid(center, cellSize = snapInteractor.gridUnit)
 
-	best = None
-	bestDist = +Infinity
+    best = None
+    bestDist = +Infinity
 
-	for each blockLoc in candidates:
-		snapPoints = getAvailableSnapPoints(blockLoc)
-		for each point in snapPoints:
-			d = distance(point.worldPosition, heldBlockRef.worldPosition)
-			if d < bestDist:
-				bestDist = d
-				best = (blockLoc, point)
+    for each blockLoc in candidates:
+        snapPoints = getAvailableSnapPoints(blockLoc)
+        for each point in snapPoints:
+            d = distance(point.worldPosition, heldBlockRef.worldPosition)
+            if d < bestDist:
+                bestDist = d
+                best = (blockLoc, point)
 
-	if best != None:
-		return best.point
-	else:
-		// fallback policy
-		return snapInteractor.defaultSnapPoint
+    if best != None:
+        return best.point
+    else:
+        // fallback policy
+        return snapInteractor.defaultSnapPoint
 
 ```
 
@@ -64,18 +82,6 @@ Unity implementation tips:
 - For visual debugging, draw gizmos for candidate points and the chosen prediction (Gizmos.DrawSphere / Handles.Label in editor).
 
 If you'd like, I can convert this pseudocode into C# Unity code (including reservation/lock behavior, orientation penalty, and a small unit test) and add it to `Assets/Scripts/`.
-
-
-## Unity project
-
-- Unity Editor version recorded for this project: 2023.1.2f1
-- Open the project using Unity Hub and select the above Editor version. If you don't have that exact version, Unity will usually offer to upgrade; prefer using the recorded version for exact compatibility.
-
-Project folders of interest:
-
-- `Assets/` — All game assets, scenes, textures, prefabs and scripts.
-- `Packages/` — Manifest listing packages used by the project.
-- `ProjectSettings/` — Project-level configuration (includes `ProjectVersion.txt`).
 
 ## How to view the research materials
 
@@ -105,6 +111,11 @@ If you want, paste the formal citation (authors, venue, year) here and I will ad
 - `README.md` — This file
 - `LICENSE` — Project license
 
+## Next steps you might want
+
+1. Move the accepted PDF into `docs/` and add a small README in `docs/` with a short abstract.
+2. Add a `LICENSE` note for the paper (if allowed) and a `CITATION.cff`/`CITATION.md` with BibTeX.
+3. Add a short video or GIF of the mixed-reality interactions to `docs/media/` for quick demos.
 
 ## Contact
 
